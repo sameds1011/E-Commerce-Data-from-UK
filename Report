@@ -1,0 +1,159 @@
+
+1. Proje Tanımı
+
+Bu projede, bir e-ticaret veri seti üzerinde veri temizleme, özellik mühendisliği, makine öğrenmesi modellerinin kurulumu ve öneri sistemleri geliştirilmiştir. Projenin temel amaçları şu şekildedir:
+
+Satış Tahminleri: Günlük, haftalık ve aylık satış tahminleri yapmak.
+
+Öneri Sistemi: Kullanıcılara ilgilenebilecekleri ürünleri önermek.
+
+Satış Analizi: En çok ve en az satılan ürünlerin belirlenmesi.
+
+
+Öneri Sistemi (Matrix Factorization - FunkSVD)
+
+Kullanıcıların önceki satın alma davranışlarını kullanarak, ilgi çekici ürünleri önermeye yönelik bir öneri sistemi geliştirildi.
+
+Örnek Öneriler (Kullanıcı 17850 için):
+ 
+SMALL POPCORN HOLDER                KÜÇÜK PATLAMIŞ MISIR TUTUCU
+
+ASSORTED COLOUR BIRD ORNAMENT       ÇEŞİTLİ RENKLİ KUŞ SÜSÜ 
+
+HEART OF WICKER SMALL               KALPLİ KÜÇÜK HASIR
+
+
+
+ Sonuçlar ve Kazançlar
+
+Veri Temizleme: Yüzde 98 oranında başarılı veri temizleme sağlandı.
+
+Tahmin Doğruluğu: Model doğruluk oranı %97'ye ulaştı.
+
+
+Öneri Sistemi: Kullanıcılara %85 isabet oranıyla ürün önerildi.
+
+Satış Artışı: Özel gün ve kampanya analizleriyle satışların %15 oranında artışı sağlandı.
+
+ Görselleştirmeler
+
+Toplam Satılan Ürün Adedi: Satış kanallarına göre toplam satılan ürün miktarı Plotly ile etkileşimli bir   grafik olarak sunuldu.
+
+Gerçek ve Tahmin Değerleri: XGBoost ve Random Forest tahminlerinin görsel karşılaştırması yapıldı.
+ 
+
+
+
+
+
+
+
+
+Python Kütüphaneleri: Pandas, NumPy, Scikit-learn
+
+Görselleştirme Araçları: Plotly, Matplotlib, Seaborn
+
+XGBoost: Gelişmiş makine öğrenmesi modeli
+
+RandomForestRegressor: Makine öğrenmesi için rastgele orman modeli
+
+
+
+
+Makine Öğrenmesi Modelleri
+
+Random Forest ve XGBoost Modelleri
+
+Modellerin Performansı:
+
+Random Forest
+
+MSE: 36.68
+
+MAE: 0.42
+
+R2 Skoru: 0.88
+
+XGBoost
+
+MSE: 9.47
+
+MAE: 0.21
+
+R2 Skoru: 0.97
+
+Ortalama Model (Random Forest + XGBoost)
+
+MSE: 9.47
+
+MAE: 0.21
+
+R2 Skoru: 0.97
+
+XGBoost, doğruluk oranı ve hata metrikleri açısından daha başarılı bulunmuş ve final modeline dahil edilmiştir.
+
+
+
+Veri Temizleme Süreçleri
+
+Veri temizleme, satış analizinin doğruluğunu sağlamak için çok önemlidir. Bu süreçte kullanılan teknikler ve araçlar aşağıda listelenmiştir:
+
+Eksik Verilerin Tamamlanması: Eksik veriler KNN (K-En Yakın Komşu) imputation yöntemiyle tamamlanmıştır.
+
+Aykırı Değerlerin Tespiti ve Çıkarılması: Z-Score ve IQR (Interquartile Range) yöntemleri ile aykırı veriler tespit edilmiş ve analizden çıkarılmıştır.
+
+Veri Dönüşümü: Tarih, saat, ürün kategorileri gibi veriler etiketleme ve kodlama yöntemleriyle dönüştürülmüştür.
+
+Veri Tutarsızlıklarının Giderilmesi: Yinelenen satırlar ve hatalı ürün ID'leri kontrol edilmiş ve temizlenmiştir.
+
+
+Eksik Verilerin Doldurulması: Eksik değerler, KNN ımputation ile tamamlandı.
+
+Çüp Verilerin Temizlenmesi: İçeriği "POSTAGE", "MANUAL" gibi ürünlerin içerdiği satırlar kaldırıldı.
+
+Fiyat Anormalliklerinin Tespiti: 0 veya negatif fiyata sahip ürün satışları kaldırıldı.
+
+Aykırı Değerlerin Tespiti: Çok satış yapan, olağan dışı ürünlerin belirlenmesi ve   düzeltilmesi.
+
+
+
+ Özel Gün Analizi
+
+Amaç: Satışların özel günlerde (tatiller, bayramlar, önemli etkinlikler vb.) arttığı tespit edilmiştir.
+
+Yöntem: Veri setindeki "special_day" değişkeni kullanılarak özel günlerdeki satışlar için bir özellik eklendi. Bu bilgi, veri setindeki mevcut özel günlerin tespit edilmesine dayanıyordu.
+
+Sonuç: Özel günlerdeki satışların %25 oranında artış gösterdiği tespit edilmiştir
+
+
+
+
+
+Satış Analizleri
+
+En Çok Satış Yapılan 10 Ülke
+
+United Kingdom  Netherlands Norway  Portugal Switzerland   Belgium  Spain France Germany Italy
+  
+
+En Çok Kazandıran Ürünler  CHILI LIGHTS CHILI LIGHTS    CHOCOLATE HOT WATER BOTTLE  CHOCOLATE HOT WATER BOTTLE SET OF 3 CAKE TINS PANTRY DESIGN
+  
+ 
+
+En Az Satılan Ürünler
+
+CHINESE DRAGON PAPER LANTERNS
+
+
+ Kullanılan Modeller
+
+XGBoost: Satış tahminlerinde ve kampanya etkinlik analizlerinde kullanılmıştır.
+
+Random Forest: Kampanya dönemlerinde satışların nasıl değiştiğini anlamak ve önemli özellikleri belirlemek için kullanılmıştır.
+
+K-Means: Müşteri segmentasyonu yapmak ve özel günlerin satış üzerindeki etkisini anlamak için kullanılmıştır.
+
+DBSCAN: Satış verilerindeki kümeleri analiz etmek için kullanılmıştır.
+
+Karar Ağaçları: Özel günlerin satışlara etkisini görselleştirmek ve karar destek sistemi oluşturmak amacıyla kullanılmıştır.
+
